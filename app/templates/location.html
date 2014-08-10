@@ -1,0 +1,41 @@
+<ion-view title="Location search">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <div class="bar bar-subheader" style="display: block; height: auto;">
+        <div class="list list-inset" style="margin: 5px;">
+            <div class="item item-input" style="padding-right: 16px;" focus-input>
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" style="padding-right: 20px;" autofocus ng-model="searchKey" ng-change="searchKeyChanged(searchKey)">
+                <button class="button button-icon icon icon-right ion-close-round input-icon-right" ng-click="searchKey=''"></button>
+            </div>
+        </div>
+    </div>
+    <ion-content class="has-header-and-search">
+        <div class="row" ng-if="error">
+            <div class="col">
+                <h4 class="center">{{error}}</h4>
+                <div class="center" style="margin-top: 20px;">
+                    <button class="button icon ion-refresh" ng-click="searchKeyChanged(searchKey)"></button>
+                </div>
+            </div>
+        </div>
+        <i class="icon ion-loading-c center" style="font-size: 40px; margin-top: 32px;" ng-if="loading"></i>
+        <div class="card" ng-if="searchKey.length === 0">
+            <div class="item item-icon-left" ng-click="chooseLocation(myLocation)">
+                <i class="icon ion-pinpoint"></i>
+                {{myLocation}}
+            </div>
+        </div>
+        <div class="card" ng-if="resultLocations.length === 0">
+            <div class="item item-text-wrap">
+                No results
+            </div>
+        </div>
+        <div class="list card" ng-if="resultLocations">
+            <div class="item item-text-wrap" ng-repeat="resultLocation in resultLocations" ng-click="chooseLocation(resultLocation)">
+                {{resultLocation}}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
