@@ -494,4 +494,8 @@ module.exports = function (grunt) {
     'karma:continuous',
     'build'
   ]);
+
+  grunt.registerTask('android', [
+    
+  ]);
 };
